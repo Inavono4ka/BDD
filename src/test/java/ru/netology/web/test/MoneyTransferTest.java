@@ -2,7 +2,7 @@ package ru.netology.web.test;
 
 import org.junit.jupiter.api.Test;
 import ru.netology.web.data.DataHelper;
-import ru.netology.web.page.ListOfCardsPage;
+import ru.netology.web.page.DashboardPage;
 import ru.netology.web.page.LoginPage;
 import ru.netology.web.page.TransferMoneyPage;
 
@@ -19,14 +19,14 @@ public class MoneyTransferTest {
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         verificationPage.validVerify(verificationCode);
-        var listOfCardsPage = new ListOfCardsPage();
+        var listOfCardsPage = new DashboardPage();
         int initialFirstCardBalance = listOfCardsPage.getFirstCardBalance(); // баланс 1ой карты ДО перевода
         int initialSecondCardBalance = listOfCardsPage.getSecondCardBalance(); // баланс 2ой карты ДО перевода
         listOfCardsPage.firstCardDeposit();
         var transferMoneyPage = new TransferMoneyPage();
         var depositInfo = DataHelper.getDepositInfo();
         transferMoneyPage.depositFromFirstCardToSecond(depositInfo);
-        var listOfCardsPage2 = new ListOfCardsPage();
+        var listOfCardsPage2 = new DashboardPage();
         int firstCardBalance = listOfCardsPage2.getFirstCardBalance(); // баланс 1ой карты ПОСЛЕ перевода
         int secondCardBalance = listOfCardsPage2.getSecondCardBalance(); // баланс 2ой карты ПОСЛЕ перевода
         int firstCardBalanceExpected = initialFirstCardBalance + DataHelper.getDepositInfo().getAmount();

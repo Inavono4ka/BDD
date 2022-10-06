@@ -10,10 +10,10 @@ public class TransferMoneyPage {
     private SelenideElement senderField = $("[data-test-id=from] input");
     private SelenideElement depositButton = $("[data-test-id=action-transfer]");
 
-    public ListOfCardsPage depositFromFirstCardToSecond(DataHelper.DepositInfo info) {
+    public DashboardPage depositFromFirstCardToSecond(DataHelper.DepositInfo info) {
         amountField.setValue(String.valueOf(info.getAmount()));
         senderField.setValue(info.getFrom());
         depositButton.click();
-        return new ListOfCardsPage();
+        return new DashboardPage();
     }
 }
